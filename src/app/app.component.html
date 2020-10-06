@@ -1,0 +1,9 @@
+
+<form name="loginForm" [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit(loginForm)">
+    <div *ngFor="let loginProp of login">
+    <app-input [formGroup]="loginForm" [formProp]="loginProp"></app-input>
+    </div>
+    <button mat-raised-button color="primary" class="submit-button" aria-label="Log In" [disabled]="!loginForm.valid">
+        Login
+    </button>
+</form>

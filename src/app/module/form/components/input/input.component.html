@@ -1,0 +1,95 @@
+<form [formGroup]="formGroup">
+    <div *ngIf="formProp.element == 'input'">
+        <mat-form-field [class]="formProp.matFormFieldCss" appearance="outline" #matFormField>
+            <mat-label>{{formProp.label}}</mat-label>
+            <input *ngIf="formProp.cssClass; else undefined" matInput [type]="formProp.type"
+                    [formControlName]="formProp.formControlName"
+                    [placeholder]="formProp.placeholder"
+                    [errorStateMatcher]="matcher"
+                    [class]="formProp.cssClass"
+                    #valueField>
+
+            <input #undefined matInput [type]="formProp.type" [formControlName]="formProp.formControlName"
+                    [placeholder]="formProp.placeholder"
+                    [errorStateMatcher]="matcher"
+                    #valueField>
+
+            <mat-icon matSuffix class="secondary-text">{{formProp.icon}}</mat-icon>
+            <mat-error
+                *ngIf="formProp.type == 'color' && formGroup.controls[formProp.formControlName].hasError('required')">
+                    {{formProp.errorMessage}}                
+            </mat-error>
+            <mat-error
+                *ngIf="formProp.type == 'date' && formGroup.controls[formProp.formControlName].hasError('required')">
+                    {{formProp.errorMessage}}                
+            </mat-error>
+            <mat-error
+                *ngIf="formGroup.controls[formProp.formControlName].hasError('required') && formProp.type == 'datetime-local'">
+                    {{formProp.errorMessage}}                
+            </mat-error>
+            <mat-error
+                *ngIf="formProp.type == 'month' && formGroup.controls[formProp.formControlName].hasError('required')">
+                    {{formProp.errorMessage}}                
+            </mat-error>
+            <mat-error
+                *ngIf="formProp.type == 'number' && formGroup.controls[formProp.formControlName].hasError('required')">
+                    {{formProp.errorMessage}}                
+            </mat-error>
+
+        </mat-form-field>
+
+    </div>
+    <!-- <div *ngIf="formProp.element == 'select'">
+        <mat-form-field>
+            <mat-label>
+                {{formProp.label}}
+            </mat-label>
+            <mat-select [formControlName]="formProp.formControlName" #valueField>
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let option of formProp.options" [value]="option">
+                    {{option}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="formGroup.controls[formProp.formControlName].hasError('required')">
+                {{formProp.errorMessage}}
+            </mat-error>
+        </mat-form-field>
+    </div> -->
+    <!-- <div *ngIf="formProp.element == 'DatePicker'">
+        <mat-form-field [class]="formProp.matFormFieldCss" #matFormField>
+            <input matInput [matDatepicker]="picker" [placeholder]="formProp.placeholder"
+                    (click)="picker.open()"
+                    [formControlName]="formProp.formControlName" #valueField readonly>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="formGroup.controls[formProp.formControlName].hasError('required')">
+                {{formProp.errorMessage}}
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div *ngIf="formProp.element == 'checkbox'">
+        <mat-checkbox [formControlName]="formProp.formControlName">
+            {{formProp.placeholder}}
+        </mat-checkbox>
+    </div> -->
+</form>
+
+
+<!-- <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Input</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Select</mat-label>
+      <mat-select>
+        <mat-option value="option">Option</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Textarea</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+  </div> -->
